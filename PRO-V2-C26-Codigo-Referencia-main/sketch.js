@@ -12,6 +12,9 @@ var boats = [];
 
 var score = 0;
 //1 cria 3 variaveis  1 pra matrix 1 pro json 1 para imagens
+var barcoquebro=[]
+var reboque
+var quebradoframes
 var barcoanimation=[]
 var boatSpriteData
 var imageframes
@@ -19,8 +22,10 @@ function preload() {
   backgroundImg = loadImage("./assets/background.gif");
   towerImage = loadImage("./assets/tower.png");
    //2 carrega arquivos da variaveis
-   var boatSpriteData=loadJSON("./assets/boat/boat.json")
-   var imageframes=loadImage("./assets/boat/boat.png")
+    reboque=loadJSON("./assets/boat/brokenboat.json")
+    quebradoframes=loadImage("./assets/boat/brokenboat.png")
+    boatSpriteData=loadJSON("./assets/boat/boat.json")
+    imageframes=loadImage("./assets/boat/boat.png")
 }
 
 function setup() {
@@ -50,7 +55,13 @@ function setup() {
     barcoanimation.push(img)
     
   }
+  for (var i=0;i<quebradoframes.length;i++){
 
+    var posi=quebradoframes[i].position
+    var img=quebradoframes.get(posi.x,posi.y,posi.w,posi.h)
+    brokenboat.push(img)
+    
+  }
 }
 
 function draw() {
@@ -127,7 +138,7 @@ function showBoats() {
       var positions = [-40, -60, -70, -20];
       var position = random(positions);
       var boat = new Boat(width, height - 100, 170, 170, position,barcoanimation);
-
+      
       boats.push(boat);
     }
 
